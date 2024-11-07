@@ -1,0 +1,40 @@
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+
+public class FileHandler {
+    private File file;
+
+    public FileHandler(String filePath) {
+        this.file = new File(filePath);
+    }
+
+    public boolean exists() {
+        return file.exists();
+    }
+
+    public boolean isFile() {
+        return file.isFile();
+    }
+
+    public boolean canRead() {
+        return file.canRead();
+    }
+
+    public boolean canWrite() {
+        return file.canWrite();
+    }
+
+    public String readContent() throws IOException {
+        Path path = file.toPath();
+        return new String(Files.readAllBytes(path));
+    }
+
+    public void writeContent(String content) throws IOException {
+        Path path = file.toPath();
+        Files.write(path, content.getBytes(), StandardOpenOption.APPEND);
+    }
+}
