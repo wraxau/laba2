@@ -1,0 +1,64 @@
+import java.util.Map;
+import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите полный путь к файлу: ");
+        String filePath = scanner.nextLine();
+
+        FileHandler fileHandler = new FileHandler(filePath);
+
+        if (!fileHandler.exists()) {
+            System.out.println("Ошибка! Такого файла не существует или указан неверный путь");
+            return;
+        }
+
+        if (!fileHandler.isFile()) {
+            System.out.println("Указанный путь ведет не к файлу");
+            return;
+        }
+
+        if (!fileHandler.canRead()) {
+            System.out.println("Ошибка! У меня нет прав на чтение файла, предоставьте доступ и попробуйте снова");
+            return;
+        }
+
+        if (!fileHandler.canWrite()) {
+            System.out.println("Ошибка! Нет прав на редактирование файла, предоставьте доступ и попробуйте снова");
+            return;
+        }
+
+
+        String content = "";
+        try {
+            content = fileHandler.readContent();
+            System.out.println("Содержимое файла успешно прочитано");
+        } catch (IOException e) {
+            System.out.println("Ошибка! Не получается прочитать содержимое файла: " + e.getMessage());
+            return;
+        }
+
+        CharacterCounter characterCounter = new CharacterCounter();
+        Map<Character, Integer> charCounts = characterCounter.countCharacters(content);
+
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<Character, Integer> entry : charCounts.entrySet()) {
+            result.append(entry.getKey()).append("-").append(entry.getValue()).append("\n");
+        }
+
+        try {
+            fileHandler.writeContent(result.toString());
+            System.out.println("Результаты успешно записаны в файл");
+        } catch (IOException e) {
+            System.out.println("Ошибка при попытке записи в файл: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+}
