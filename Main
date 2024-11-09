@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class Main {
+
+    private static String scanner() throws IOException {
+        Scanner inputScanner = new Scanner(System.in);
+        System.out.print("введите полный путь к файлу: ");
+        return inputScanner.nextLine();
+    }
+
+    public static void main(String[] args) {
+        try {
+            String filePath = scanner();
+            FileHandler fileHandler = new FileHandler(filePath);
+            String content;
+            try {
+                content = fileHandler.readContent();
+                System.out.println("cодержимое файла успешно прочитано");
+                LetterCounter letterCounter = new LetterCounter();
+                letterCounter.countCharacters(content);
+                String results = letterCounter.getCounts();
+                fileHandler.writeContent(results);
+                System.out.println("результаты успешно записаны в файл" );
+            } catch (IOException e) {
+                System.out.println("ошибка! проверьте правильно ли записан путь файла и его имя ");
+            }
+        } catch (IOException e) {
+            System.out.println("возникла ошибка при вводе/выводе " );
+        }
+    }
+}
+
+
+
