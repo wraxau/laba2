@@ -1,179 +1,27 @@
 class LetterCounter {
-    private int a_count = 0;
-    private int b_count = 0;
-    private int c_count = 0;
-    private int d_count = 0;
-    private int e_count = 0;
-    private int f_count = 0;
-    private int g_count = 0;
-    private int h_count = 0;
-    private int i_count = 0;
-    private int j_count = 0;
-    private int k_count = 0;
-    private int l_count = 0;
-    private int m_count = 0;
-    private int n_count = 0;
-    private int o_count = 0;
-    private int p_count = 0;
-    private int q_count = 0;
-    private int r_count = 0;
-    private int s_count = 0;
-    private int t_count = 0;
-    private int u_count = 0;
-    private int v_count = 0;
-    private int w_count = 0;
-    private int x_count = 0;
-    private int y_count = 0;
-    private int z_count = 0;
-    private int A_count = 0;
-    private int B_count = 0;
-    private int C_count = 0;
-    private int D_count = 0;
-    private int E_count = 0;
-    private int F_count = 0;
-    private int G_count = 0;
-    private int H_count = 0;
-    private int I_count = 0;
-    private int J_count = 0;
-    private int K_count = 0;
-    private int L_count = 0;
-    private int M_count = 0;
-    private int N_count = 0;
-    private int O_count = 0;
-    private int P_count = 0;
-    private int Q_count = 0;
-    private int R_count = 0;
-    private int S_count = 0;
-    private int T_count = 0;
-    private int U_count = 0;
-    private int V_count = 0;
-    private int W_count = 0;
-    private int X_count = 0;
-    private int Y_count = 0;
-    private int Z_count = 0;
+    private int[] counts = new int[52]; // 26 for lowercase + 26 for uppercase
 
-    public void countCharacters(String content) {
+    public void getCounts(String content) {
         for (char x : content.toCharArray()) {
             if (Character.isLowerCase(x)) {
-                switch (x) {
-                    case 'a': a_count++; break;
-                    case 'b': b_count++; break;
-                    case 'c': c_count++; break;
-                    case 'd': d_count++; break;
-                    case 'e': e_count++; break;
-                    case 'f': f_count++; break;
-                    case 'g': g_count++; break;
-                    case 'h': h_count++; break;
-                    case 'i': i_count++; break;
-                    case 'j': j_count++; break;
-                    case 'k': k_count++; break;
-                    case 'l': l_count++; break;
-                    case 'm': m_count++; break;
-                    case 'n': n_count++; break;
-                    case 'o': o_count++; break;
-                    case 'p': p_count++; break;
-                    case 'q': q_count++; break;
-                    case 'r': r_count++; break;
-                    case 's': s_count++; break;
-                    case 't': t_count++; break;
-                    case 'u': u_count++; break;
-                    case 'v': v_count++; break;
-                    case 'w': w_count++; break;
-                    case 'x': x_count++; break;
-                    case 'y': y_count++; break;
-                    case 'z': z_count++; break;
-                }
+                counts[x - 'a']++; 
             } else if (Character.isUpperCase(x)) {
-                switch (x) {
-                    case 'A': A_count++; break;
-                    case 'B': B_count++; break;
-                    case 'C': C_count++; break;
-                    case 'D': D_count++; break;
-                    case 'E': E_count++; break;
-                    case 'F': F_count++; break;
-                    case 'G': G_count++; break;
-                    case 'H': H_count++; break;
-                    case 'I': I_count++; break;
-                    case 'J': J_count++; break;
-                    case 'K': K_count++; break;
-                    case 'L': L_count++; break;
-                    case 'M': M_count++; break;
-                    case 'N': N_count++; break;
-                    case 'O': O_count++; break;
-                    case 'P': P_count++; break;
-                    case 'Q': Q_count++; break;
-                    case 'R': R_count++; break;
-                    case 'S': S_count++; break;
-                    case 'T': T_count++; break;
-                    case 'U': U_count++; break;
-                    case 'V': V_count++; break;
-                    case 'W': W_count++; break;
-                    case 'X': X_count++; break;
-                    case 'Y': Y_count++; break;
-                    case 'Z': Z_count++; break;
-                }
+                counts[x - 'A' + 26]++;
             }
         }
     }
-
-    public String getCounts() {
+    public String getResults() {
         StringBuilder result = new StringBuilder();
-        result.append("строчные буквы:\n");
-        result.append("a: ").append(a_count).append("\n");
-        result.append("b: ").append(b_count).append("\n");
-        result.append("c: ").append(c_count).append("\n");
-        result.append("d: ").append(d_count).append("\n");
-        result.append("e: ").append(e_count).append("\n");
-        result.append("f: ").append(f_count).append("\n");
-        result.append("g: ").append(g_count).append("\n");
-        result.append("h: ").append(h_count).append("\n");
-        result.append("i: ").append(i_count).append("\n");
-        result.append("j: ").append(j_count).append("\n");
-        result.append("k: ").append(k_count).append("\n");
-        result.append("l: ").append(l_count).append("\n");
-        result.append("m: ").append(m_count).append("\n");
-        result.append("n: ").append(n_count).append("\n");
-        result.append("o: ").append(o_count).append("\n");
-        result.append("p: ").append(p_count).append("\n");
-        result.append("q: ").append(q_count).append("\n");
-        result.append("r: ").append(r_count).append("\n");
-        result.append("s: ").append(s_count).append("\n");
-        result.append("t: ").append(t_count).append("\n");
-        result.append("u: ").append(u_count).append("\n");
-        result.append("v: ").append(v_count).append("\n");
-        result.append("w: ").append(w_count).append("\n");
-        result.append("x: ").append(x_count).append("\n");
-        result.append("y: ").append(y_count).append("\n");
-        result.append("z: ").append(z_count).append("\n");
-
-        result.append("\nзаглавные буквы:\n");
-        result.append("A: ").append(A_count).append("\n");
-        result.append("B: ").append(B_count).append("\n");
-        result.append("C: ").append(C_count).append("\n");
-        result.append("D: ").append(D_count).append("\n");
-        result.append("E: ").append(E_count).append("\n");
-        result.append("F: ").append(F_count).append("\n");
-        result.append("G: ").append(G_count).append("\n");
-        result.append("H: ").append(H_count).append("\n");
-        result.append("I: ").append(I_count).append("\n");
-        result.append("J: ").append(J_count).append("\n");
-        result.append("K: ").append(K_count).append("\n");
-        result.append("L: ").append(L_count).append("\n");
-        result.append("M: ").append(M_count).append("\n");
-        result.append("N: ").append(N_count).append("\n");
-        result.append("O: ").append(O_count).append("\n");
-        result.append("P: ").append(P_count).append("\n");
-        result.append("Q: ").append(Q_count).append("\n");
-        result.append("R: ").append(R_count).append("\n");
-        result.append("S: ").append(S_count).append("\n");
-        result.append("T: ").append(T_count).append("\n");
-        result.append("U: ").append(U_count).append("\n");
-        result.append("V: ").append(V_count).append("\n");
-        result.append("W: ").append(W_count).append("\n");
-        result.append("X: ").append(X_count).append("\n");
-        result.append("Y: ").append(Y_count).append("\n");
-        result.append("Z: ").append(Z_count).append("\n");
+        result.append("Счетчик букв:\n");
+        for (int i = 0; i < 26; i++) {
+            char lowerCaseLetter = (char) ('a' + i);
+            char upperCaseLetter = (char) ('A' + i);
+            result.append(lowerCaseLetter).append(": ").append(counts[i]).append(", ");
+            result.append(upperCaseLetter).append(": ").append(counts[i + 26]).append("\n");
+        }
 
         return result.toString();
     }
 }
+
+
