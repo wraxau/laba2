@@ -1,11 +1,11 @@
 import java.io.*;
+
 class FileHandler {
     private String filePath;
 
     public FileHandler(String filePath) {
         this.filePath = filePath;
     }
-
     public String readContent() throws IOException {
         StringBuilder content = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -19,8 +19,9 @@ class FileHandler {
 
     public void writeContent(String content) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.newLine();
             writer.write(content);
         }
     }
 }
+
+
