@@ -1,11 +1,11 @@
-import java.io.*;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    private static String scanner() throws IOException {
+    private static String scanner() {
         Scanner inputScanner = new Scanner(System.in);
-        System.out.print("введите полный путь к файлу: ");
+        System.out.print("Введите полный путь к файлу: ");
         return inputScanner.nextLine();
     }
 
@@ -16,17 +16,19 @@ public class Main {
             String content;
             try {
                 content = fileHandler.readContent();
-                System.out.println("cодержимое файла успешно прочитано");
+                System.out.println("Содержимое файла успешно прочитано");
+
                 LetterCounter letterCounter = new LetterCounter();
-                letterCounter.countCharacters(content);
-                String results = letterCounter.getCounts();
+                letterCounter.getCounts(content); 
+
+                String results = letterCounter.getResults(); 
                 fileHandler.writeContent(results);
-                System.out.println("результаты успешно записаны в файл" );
+                System.out.println("Результаты успешно записаны в файл");
             } catch (IOException e) {
-                System.out.println("ошибка! проверьте правильно ли записан путь файла и его имя ");
+                System.out.println("Ошибка! Проверьте правильно ли записан путь к файлу и его имя.");
             }
-        } catch (IOException e) {
-            System.out.println("возникла ошибка при вводе/выводе " );
+        } catch (Exception e) {
+            System.out.println("Возникла ошибка: " + e.getMessage());
         }
     }
 }
